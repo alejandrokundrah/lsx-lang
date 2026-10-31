@@ -51,6 +51,27 @@
         "language": "lsx",
         "path": "./snippets/lsx.json"
       }
+    ],
+    "configurationDefaults": {
+      "[lsx]": {
+        "editor.bracketPairColorization.enabled": true,
+        "editor.semanticHighlighting.enabled": true,
+        "emmet.triggerExpansionOnTab": true,
+        "emmet.showAbbreviationSuggestions": true,
+        "emmet.showExpandedAbbreviation": "always"
+      }
+    },
+    "emmetExtensionsPath": "./emmet",
+    "emmet.includeLanguages": {
+      "lsx": "html"
+    },
+    "iconThemes": [
+      {
+        "id": "lsx-icons",
+        "label": "LSX File Icons",
+        "path": "./icons/lsx-icon-theme.json",
+        "uiTheme": "vs-seti"
+      }
     ]
   },
   "repository": {

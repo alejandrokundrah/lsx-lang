@@ -6,7 +6,8 @@
   "brackets": [
     ["{", "}"],
     ["[", "]"],
-    ["(", ")"]
+    ["(", ")"],
+    ["<", ">"]
   ],
   "autoClosingPairs": [
     ["{", "}"],
@@ -15,7 +16,8 @@
     ["\"", "\""],
     ["'", "'"],
     ["`", "`"],
-    ["<", ">"]
+    ["<", ">"],
+    ["/*", "*/"]
   ],
   "surroundingPairs": [
     ["{", "}"],
@@ -26,10 +28,31 @@
     ["`", "`"],
     ["<", ">"]
   ],
+  "wordPattern": "(\\w+(\\.\\w+)*|<[^>]+>|{[^}]+})",
+  "indentationRules": {
+    "increaseIndentPattern": "^((?!\\/\\/).*\\/\\*|\\s*(component|fn|props|state|render|effect|style|cleanup|if|else|for|while|do|try|catch|finally|function|class)\\b.*\\{\\s*$)",
+    "decreaseIndentPattern": "^\\s*(\\}|\\/\\*\\s*(end|stop)\\s*\\*\\/)"
+  },
   "folding": {
     "markers": {
-      "start": "^\\s*//\\s*#region\\b",
-      "end": "^\\s*//\\s*#endregion\\b"
+      "start": "^\\s*(component\\s+\\w+|fn\\s+\\w+|props\\s*\\{|state\\s*\\{|render\\s*\\{|effect\\s*\\{|style\\s*\\{|cleanup\\s*\\{|if\\s*\\(|for\\s*\\(|while\\s*\\(|try\\s*\\{)",
+      "end": "^\\s*\\}"
     }
-  }
+  },
+  "onEnterRules": [
+    {
+      "beforeText": "\\s*(component|fn|props|state|render|effect|style|cleanup|if|else|for|while|do|try|catch|finally)\\b.*\\{\\s*$",
+      "action": {
+        "indent": "append",
+        "indentText": "    "
+      }
+    },
+    {
+      "beforeText": "\\s*\\}\\s*$",
+      "action": {
+        "indent": "outdent",
+        "indentText": ""
+      }
+    }
+  ]
 }

@@ -1,0 +1,30 @@
+{
+  "iconDefinitions": {
+    "lsx": {
+      "iconPath": "lsx.svg"
+    }
+  },
+  "fileExtensions": {
+    "lsx": "lsx"
+  },
+  "fileNames": {},
+  "languageIds": {
+    "lsx": "lsx"
+  },
+  "light": {
+    "fileExtensions": {
+      "lsx": "lsx"
+    },
+    "languageIds": {
+      "lsx": "lsx"
+    }
+  },
+  "highContrast": {
+    "fileExtensions": {
+      "lsx": "lsx"
+    },
+    "languageIds": {
+      "lsx": "lsx"
+    }
+  }
+}

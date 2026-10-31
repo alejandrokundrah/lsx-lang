@@ -1,0 +1,64 @@
+{
+  "variables": {
+    "lang": "en",
+    "locale": "en-US",
+    "charset": "UTF-8",
+    "projection": "none",
+    "indentation": "  "
+  },
+  "syntaxProfiles": {
+    "html": {
+      "self_closing_tag": true
+    }
+  },
+  "html": {
+    "snippets": {
+      "div": "div",
+      "section": "section",
+      "header": "header",
+      "footer": "footer",
+      "main": "main",
+      "nav": "nav",
+      "article": "article",
+      "aside": "aside",
+      "span": "span",
+      "p": "p",
+      "a": "a",
+      "img": "img",
+      "button": "button",
+      "input": "input",
+      "form": "form",
+      "ul": "ul",
+      "ol": "ol",
+      "li": "li",
+      "table": "table",
+      "tr": "tr",
+      "td": "td",
+      "th": "th"
+    },
+    "abbreviations": {
+      "div": "div",
+      "section": "section",
+      "header": "header",
+      "footer": "footer",
+      "main": "main",
+      "nav": "nav",
+      "article": "article",
+      "aside": "aside",
+      "span": "span",
+      "p": "p",
+      "a": "a",
+      "img": "img",
+      "button": "button",
+      "input": "input",
+      "form": "form",
+      "ul": "ul",
+      "ol": "ol",
+      "li": "li",
+      "table": "table",
+      "tr": "tr",
+      "td": "td",
+      "th": "th"
+    }
+  }
+}

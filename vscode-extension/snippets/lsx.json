@@ -122,5 +122,211 @@
       "}"
     ],
     "description": "Try-catch block"
+  },
+  "API Get": {
+    "prefix": "get",
+    "body": [
+      "const response = await get('${1:url}');",
+      "const data = response.json();"
+    ],
+    "description": "API GET request"
+  },
+  "API Post": {
+    "prefix": "post",
+    "body": [
+      "const response = await post('${1:url}', ${2:body});",
+      "const data = response.json();"
+    ],
+    "description": "API POST request"
+  },
+  "onClick Handler": {
+    "prefix": "onclick",
+    "body": [
+      "onClick={() => {",
+      "    ${1:// handler code}",
+      "}}"
+    ],
+    "description": "onClick event handler"
+  },
+  "onChange Handler": {
+    "prefix": "onchange",
+    "body": [
+      "onChange={(e) => {",
+      "    ${1:// handler code}",
+      "}}"
+    ],
+    "description": "onChange event handler"
+  },
+  "Map Loop": {
+    "prefix": "map",
+    "body": [
+      "{${1:array}.map((${2:item}) => (",
+      "    <div key={${2:item}.${3:id}}>",
+      "        {${2:item}.${4:property}}",
+      "    </div>",
+      "))}"
+    ],
+    "description": "Map array to elements"
+  },
+  "Conditional Render": {
+    "prefix": "cond",
+    "body": [
+      "{${1:condition} ? (",
+      "    <div>${2:true}</div>",
+      ") : (",
+      "    <div>${3:false}</div>",
+      ")}"
+    ],
+    "description": "Conditional rendering"
+  },
+  "Style Block": {
+    "prefix": "style",
+    "body": [
+      "style {",
+      "    ${1:container} {",
+      "        ${2:property}: ${3:value};",
+      "    }",
+      "}"
+    ],
+    "description": "Style block"
+  },
+  "Page Component": {
+    "prefix": "page",
+    "body": [
+      "component ${1:PageName} {",
+      "    render {",
+      "        return <Page>",
+      "            <Header title=\"${2:Title}\" />",
+      "            <Body>",
+      "                ${3:// content}",
+      "            </Body>",
+      "            <Footer />",
+      "        </Page>",
+      "    }",
+      "}",
+      "",
+      "export default ${1:PageName}"
+    ],
+    "description": "Full page component"
+  },
+  "Button Component": {
+    "prefix": "btn",
+    "body": [
+      "<Button onClick={() => {",
+      "    ${1:// action}",
+      "}}>",
+      "    ${2:Label}",
+      "</Button>"
+    ],
+    "description": "Button component"
+  },
+  "Input Component": {
+    "prefix": "input",
+    "body": [
+      "<Input",
+      "    type=\"${1:text}\"",
+      "    placeholder=\"${2:Placeholder}\"",
+      "    value={${3:value}}",
+      "    onChange={(e) => {",
+      "        ${4:// handler}",
+      "    }}",
+      "/>"
+    ],
+    "description": "Input component"
+  },
+  "Grid Layout": {
+    "prefix": "grid",
+    "body": [
+      "<Grid columns=\"${1:3}\">",
+      "    ${2:// grid items}",
+      "</Grid>"
+    ],
+    "description": "Grid layout"
+  },
+  "Flex Layout": {
+    "prefix": "flex",
+    "body": [
+      "<Flex direction=\"${1:row}\">",
+      "    ${2:// flex items}",
+      "</Flex>"
+    ],
+    "description": "Flex layout"
+  },
+  "Card Component": {
+    "prefix": "card",
+    "body": [
+      "<Card>",
+      "    <h3>${1:Title}</h3>",
+      "    <p>${2:Content}</p>",
+      "</Card>"
+    ],
+    "description": "Card component"
+  },
+  "Link Component": {
+    "prefix": "link",
+    "body": [
+      "<Link to=\"${1:/path}\">",
+      "    ${2:Link Text}",
+      "</Link>"
+    ],
+    "description": "Link component"
+  },
+  "Modal Component": {
+    "prefix": "modal",
+    "body": [
+      "<Modal isOpen={${1:isOpen}} onClose={() => ${2:setIsOpen(false)}}>",
+      "    <h2>${3:Title}</h2>",
+      "    <p>${4:Content}</p>",
+      "</Modal>"
+    ],
+    "description": "Modal component"
+  },
+  "useEffect with cleanup": {
+    "prefix": "effectcleanup",
+    "body": [
+      "effect ${1:init}() {",
+      "    ${2:// setup}",
+      "    ",
+      "    cleanup {",
+      "        ${3:// cleanup}",
+      "    }",
+      "}"
+    ],
+    "description": "Effect with cleanup"
+  },
+  "Const Declaration": {
+    "prefix": "const",
+    "body": [
+      "const ${1:name} = ${2:value};"
+    ],
+    "description": "Const declaration"
+  },
+  "Let Declaration": {
+    "prefix": "let",
+    "body": [
+      "let ${1:name} = ${2:value};"
+    ],
+    "description": "Let declaration"
+  },
+  "Export Default": {
+    "prefix": "exp",
+    "body": [
+      "export default ${1:Component}"
+    ],
+    "description": "Export default"
+  },
+  "Console Log": {
+    "prefix": "log",
+    "body": [
+      "console.log(${1:value});"
+    ],
+    "description": "Console log"
+  },
+  "Console Error": {
+    "prefix": "err",
+    "body": [
+      "console.error(${1:value});"
+    ],
+    "description": "Console error"
   }
 }

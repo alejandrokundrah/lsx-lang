@@ -11,6 +11,16 @@ let client: LanguageClient;
 
 export function activate(context: vscode.ExtensionContext) {
     console.log('LSX Language Support is now active!');
+    vscode.window.showInformationMessage('LSX Language Support activated!');
+
+    // Automatically enable LSX icon theme on first install
+    const config = vscode.workspace.getConfiguration('workbench');
+    const currentIconTheme = config.get<string>('iconTheme');
+    if (!currentIconTheme || currentIconTheme === 'vs-seti') {
+        config.update('iconTheme', 'lsx-icons', vscode.ConfigurationTarget.Global).then(() => {
+            console.log('LSX icon theme enabled automatically');
+        });
+    }
 
     const serverModule = context.asAbsolutePath(path.join('server', 'out', 'server.js'));
 

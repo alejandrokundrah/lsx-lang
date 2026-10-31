@@ -2,58 +2,200 @@
   "scopeName": "source.lsx",
   "patterns": [
     {
-      "match": "//.*$",
-      "name": "comment.line.double-slash"
+      "include": "#comments"
     },
     {
-      "match": "\\b(component|fn|import|export|default|from|as|if|else|for|in|of|while|do|return|break|continue|const|let|var|function|async|await|new|typeof|instanceof|void|delete|throw|try|catch|finally|true|false|null|undefined|this|super|yield|class|extends)\\b",
-      "name": "keyword.control"
+      "include": "#jsx"
     },
     {
-      "match": "\\b(props|state|render|effect|cleanup|style)\\b",
-      "name": "keyword.declaration"
+      "include": "#keywords"
     },
     {
-      "match": "\\b([A-Z][a-zA-Z0-9]*)\\b",
-      "name": "entity.name.type.class"
+      "include": "#strings"
     },
     {
-      "begin": "\"",
-      "end": "\"",
-      "name": "string.quoted.double"
+      "include": "#numbers"
     },
     {
-      "begin": "'",
-      "end": "'",
-      "name": "string.quoted.single"
-    },
-    {
-      "begin": "`",
-      "end": "`",
-      "name": "string.quoted.template"
-    },
-    {
-      "match": "\\b\\d+\\.\\d+([eE][+-]?\\d+)?\\b",
-      "name": "constant.numeric.float"
-    },
-    {
-      "match": "\\b\\d+\\b",
-      "name": "constant.numeric.integer"
-    },
-    {
-      "begin": "<",
-      "end": ">",
-      "name": "meta.tag"
-    },
-    {
-      "begin": "</",
-      "end": ">",
-      "name": "meta.tag"
-    },
-    {
-      "begin": "{",
-      "end": "}",
-      "name": "meta.embedded.expression"
+      "include": "#expressions"
     }
-  ]
+  ],
+  "foldingStartMarker": "(\\s*component\\s+\\w+|\\s*fn\\s+\\w+|\\s*(props|state|render|effect|style|cleanup)\\s*\\{|\\s*(if|else|for|while|do|try|catch|finally)\\s*\\{|\\s*\\{\\s*$)",
+  "foldingStopMarker": "(\\s*\\}|\\s*\\/\\/\\s*#endregion)",
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "match": "//.*$",
+          "name": "comment.line.double-slash.lsx"
+        },
+        {
+          "begin": "/\\*",
+          "end": "\\*/",
+          "name": "comment.block.lsx"
+        }
+      ]
+    },
+    "jsx": {
+      "patterns": [
+        {
+          "begin": "(<)([a-z][a-zA-Z0-9]*)(?=[\\s>])",
+          "beginCaptures": {
+            "1": { "name": "punctuation.definition.tag.begin.lsx" },
+            "2": { "name": "entity.name.tag.lsx" }
+          },
+          "end": "(</)(\\2)(>)",
+          "endCaptures": {
+            "1": { "name": "punctuation.definition.tag.begin.lsx" },
+            "2": { "name": "entity.name.tag.lsx" },
+            "3": { "name": "punctuation.definition.tag.end.lsx" }
+          },
+          "name": "meta.tag.lsx",
+          "patterns": [
+            { "include": "#tag-attributes" }
+          ]
+        },
+        {
+          "begin": "(<)([A-Z][a-zA-Z0-9]*)(?=[\\s>])",
+          "beginCaptures": {
+            "1": { "name": "punctuation.definition.tag.begin.lsx" },
+            "2": { "name": "support.class.component.lsx" }
+          },
+          "end": "(</)(\\2)(>)",
+          "endCaptures": {
+            "1": { "name": "punctuation.definition.tag.begin.lsx" },
+            "2": { "name": "support.class.component.lsx" },
+            "3": { "name": "punctuation.definition.tag.end.lsx" }
+          },
+          "name": "meta.tag.component.lsx",
+          "patterns": [
+            { "include": "#tag-attributes" }
+          ]
+        },
+        {
+          "match": "(<)([a-z][a-zA-Z0-9]*)(\\s*/>)",
+          "captures": {
+            "1": { "name": "punctuation.definition.tag.begin.lsx" },
+            "2": { "name": "entity.name.tag.lsx" },
+            "3": { "name": "punctuation.definition.tag.end.lsx" }
+          },
+          "name": "meta.tag.self-closing.lsx"
+        },
+        {
+          "match": "(<)([A-Z][a-zA-Z0-9]*)(\\s*/>)",
+          "captures": {
+            "1": { "name": "punctuation.definition.tag.begin.lsx" },
+            "2": { "name": "support.class.component.lsx" },
+            "3": { "name": "punctuation.definition.tag.end.lsx" }
+          },
+          "name": "meta.tag.self-closing.component.lsx"
+        },
+        {
+          "match": "(<)([a-z][a-zA-Z0-9]*)(>)",
+          "captures": {
+            "1": { "name": "punctuation.definition.tag.begin.lsx" },
+            "2": { "name": "entity.name.tag.lsx" },
+            "3": { "name": "punctuation.definition.tag.end.lsx" }
+          },
+          "name": "meta.tag.lsx"
+        },
+        {
+          "match": "(<)([A-Z][a-zA-Z0-9]*)(>)",
+          "captures": {
+            "1": { "name": "punctuation.definition.tag.begin.lsx" },
+            "2": { "name": "support.class.component.lsx" },
+            "3": { "name": "punctuation.definition.tag.end.lsx" }
+          },
+          "name": "meta.tag.component.lsx"
+        },
+        {
+          "match": "(</)([a-zA-Z][a-zA-Z0-9]*)(>)",
+          "captures": {
+            "1": { "name": "punctuation.definition.tag.begin.lsx" },
+            "2": { "name": "entity.name.tag.lsx" },
+            "3": { "name": "punctuation.definition.tag.end.lsx" }
+          },
+          "name": "meta.tag.lsx"
+        }
+      ]
+    },
+    "tag-attributes": {
+      "patterns": [
+        {
+          "match": "([a-zA-Z-]+)(=)",
+          "captures": {
+            "1": { "name": "entity.other.attribute-name.lsx" },
+            "2": { "name": "punctuation.separator.key-value.lsx" }
+          }
+        },
+        {
+          "include": "#strings"
+        },
+        {
+          "include": "#expressions"
+        }
+      ]
+    },
+    "keywords": {
+      "patterns": [
+        {
+          "match": "\\b(component|fn|import|export|default|from|as|if|else|for|in|of|while|do|return|break|continue|const|let|var|function|async|await|new|typeof|instanceof|void|delete|throw|try|catch|finally|true|false|null|undefined|this|super|yield|class|extends)\\b",
+          "name": "keyword.control.lsx"
+        },
+        {
+          "match": "\\b(props|state|render|effect|cleanup|style)\\b",
+          "name": "keyword.declaration.lsx"
+        },
+        {
+          "match": "\\b([A-Z][a-zA-Z0-9]*)\\b",
+          "name": "entity.name.type.class.lsx"
+        }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        {
+          "begin": "\"",
+          "end": "\"",
+          "name": "string.quoted.double.lsx"
+        },
+        {
+          "begin": "'",
+          "end": "'",
+          "name": "string.quoted.single.lsx"
+        },
+        {
+          "begin": "`",
+          "end": "`",
+          "name": "string.quoted.template.lsx"
+        }
+      ]
+    },
+    "numbers": {
+      "patterns": [
+        {
+          "match": "\\b\\d+\\.\\d+([eE][+-]?\\d+)?\\b",
+          "name": "constant.numeric.float.lsx"
+        },
+        {
+          "match": "\\b\\d+\\b",
+          "name": "constant.numeric.integer.lsx"
+        }
+      ]
+    },
+    "expressions": {
+      "patterns": [
+        {
+          "begin": "{",
+          "end": "}",
+          "name": "meta.embedded.expression.lsx",
+          "patterns": [
+            { "include": "#keywords" },
+            { "include": "#strings" },
+            { "include": "#numbers" }
+          ]
+        }
+      ]
+    }
+  }
 }
