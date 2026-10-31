@@ -1,0 +1,102 @@
+import { Header, Footer, Section, Body, Page, Card, Button, Input, get, post } from '@lsx/core'
+
+component App {
+    state {
+        users = []
+        loading = true
+        error = null
+        newUser = ""
+    }
+
+    effect init() {
+        loadUsers()
+    }
+
+    render {
+        if (loading) {
+            return <Page>
+                <Header title="Users API" subtitle="Loading..." />
+                <Section>
+                    <Body>
+                        <p>Loading users...</p>
+                    </Body>
+                </Section>
+            </Page>
+        }
+
+        if (error) {
+            return <Page>
+                <Header title="Users API" subtitle="Error" />
+                <Section>
+                    <Body>
+                        <Card title="Error">
+                            <p style={{ color: 'red' }}>{error}</p>
+                            <Button onClick={loadUsers}>Retry</Button>
+                        </Card>
+                    </Body>
+                </Section>
+            </Page>
+        }
+
+        return <Page>
+            <Header title="Users API" subtitle="Fetch data from JSONPlaceholder" />
+            <Section>
+                <Body>
+                    <Card title="Add New User">
+                        <div style={{ display: 'flex', gap: '10px', marginBottom: '20px' }}>
+                            <Input
+                                placeholder="Enter user name"
+                                value={newUser}
+                                onChange={(e) => newUser = e.target.value}
+                            />
+                            <Button onClick={addUser}>Add User</Button>
+                        </div>
+                    </Card>
+
+                    <Card title="Users List">
+                        <div style={{ marginTop: '20px' }}>
+                            for (const user of users) {
+                                <div key={user.id} style={{ padding: '10px', borderBottom: '1px solid #eee' }}>
+                                    <strong>{user.name}</strong>
+                                    <p style={{ margin: '5px 0', color: '#666' }}>{user.email}</p>
+                                </div>
+                            }
+                        </div>
+                    </Card>
+                </Body>
+            </Section>
+            <Footer copyright="2024 LSX" />
+        </Page>
+    }
+
+    async loadUsers() {
+        loading = true
+        error = null
+        try {
+            const data = await get('https://jsonplaceholder.typicode.com/users')
+            users = data.slice(0, 5)
+        } catch (err) {
+            error = "Failed to load users: " + err.message
+        }
+        loading = false
+    }
+
+    async addUser() {
+        if (newUser.trim() === "") {
+            return
+        }
+
+        try {
+            const data = await post('https://jsonplaceholder.typicode.com/users', {
+                name: newUser,
+                email: newUser.toLowerCase().replace(' ', '.') + '@example.com'
+            })
+            users = users.concat(data)
+            newUser = ""
+        } catch (err) {
+            error = "Failed to add user: " + err.message
+        }
+    }
+}
+
+export default App

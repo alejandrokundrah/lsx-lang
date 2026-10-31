@@ -1,0 +1,26 @@
+{
+  "name": "@lsx/core",
+  "version": "0.2.0",
+  "description": "Core layout components for LSX",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "files": [
+    "index.js",
+    "index.d.ts"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "keywords": [
+    "lsx",
+    "react",
+    "components",
+    "layout"
+  ],
+  "author": "LSX Team",
+  "license": "MIT"
+}

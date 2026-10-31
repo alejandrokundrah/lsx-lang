@@ -1,0 +1,74 @@
+import { Router, Link, Header, Footer, Section, Body, Page, Button, Card } from '@lsx/core'
+
+component Home {
+    props {
+        navigate
+    }
+
+    render {
+        return <div>
+            <h1>Welcome Home</h1>
+            <p>This is the home page.</p>
+            <Button onClick={() => navigate('/about')}>Go to About</Button>
+        </div>
+    }
+}
+
+component About {
+    props {
+        navigate
+    }
+
+    render {
+        return <div>
+            <h1>About Us</h1>
+            <p>This is the about page.</p>
+            <Button onClick={() => navigate('/')}>Go Home</Button>
+        </div>
+    }
+}
+
+component Contact {
+    props {
+        navigate
+    }
+
+    render {
+        return <div>
+            <h1>Contact</h1>
+            <p>This is the contact page.</p>
+            <Button onClick={() => navigate('/')}>Go Home</Button>
+        </div>
+    }
+}
+
+component App {
+    render {
+        const routes = {
+            '/': Home,
+            '/about': About,
+            '/contact': Contact
+        }
+
+        return <Page>
+            <Header title="Router Demo" subtitle="Built with LSX" />
+            <Section>
+                <Body>
+                    <div style={{ marginBottom: '20px' }}>
+                        <Link to="/">Home</Link>
+                        {' | '}
+                        <Link to="/about">About</Link>
+                        {' | '}
+                        <Link to="/contact">Contact</Link>
+                    </div>
+                    <Card>
+                        <Router routes={routes} defaultRoute="/" />
+                    </Card>
+                </Body>
+            </Section>
+            <Footer copyright="2024 LSX" />
+        </Page>
+    }
+}
+
+export default App

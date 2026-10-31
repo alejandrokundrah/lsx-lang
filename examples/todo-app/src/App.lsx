@@ -1,0 +1,93 @@
+import { Header, Footer, Section, Body, Button, Card, Input } from '@lsx/core'
+
+component TodoApp {
+    state {
+        todos = []
+        newTodo = ""
+    }
+
+    effect init() {
+        // Load from localStorage
+        const saved = localStorage.getItem('todos')
+        if (saved) {
+            todos = JSON.parse(saved)
+        }
+    }
+
+    render {
+        const todoList = todos.map((todo) => {
+            return <Card key={todo.id} style={{ marginBottom: '10px' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <span style={{ textDecoration: todo.done ? 'line-through' : 'none' }}>
+                        {todo.text}
+                    </span>
+                    <div>
+                        <Button onClick={() => toggleTodo(todo.id)} variant="secondary">
+                            {todo.done ? 'Undo' : 'Done'}
+                        </Button>
+                        <Button onClick={() => deleteTodo(todo.id)} style={{ marginLeft: '10px' }}>
+                            Delete
+                        </Button>
+                    </div>
+                </div>
+            </Card>
+        })
+
+        return <Page>
+            <Header title="Todo App" subtitle="Built with LSX" />
+            <Section>
+                <Body>
+                    <Card title="Add New Todo">
+                        <div style={{ display: 'flex', gap: '10px' }}>
+                            <Input
+                                placeholder="What needs to be done?"
+                                value={newTodo}
+                                onChange={(e) => newTodo = e.target.value}
+                            />
+                            <Button onClick={addTodo}>Add</Button>
+                        </div>
+                    </Card>
+
+                    <div style={{ marginTop: '20px' }}>
+                        {todoList}
+                    </div>
+                </Body>
+            </Section>
+            <Footer copyright="2024 LSX" />
+        </Page>
+    }
+
+    addTodo() {
+        if (newTodo.trim() === "") {
+            return
+        }
+        todos = todos.concat({
+            id: Date.now(),
+            text: newTodo,
+            done: false
+        })
+        newTodo = ""
+        saveTodos()
+    }
+
+    toggleTodo(id) {
+        todos = todos.map((todo) => {
+            if (todo.id === id) {
+                return { ...todo, done: !todo.done }
+            }
+            return todo
+        })
+        saveTodos()
+    }
+
+    deleteTodo(id) {
+        todos = todos.filter((todo) => todo.id !== id)
+        saveTodos()
+    }
+
+    saveTodos() {
+        localStorage.setItem('todos', JSON.stringify(todos))
+    }
+}
+
+export default TodoApp

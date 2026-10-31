@@ -1,0 +1,12 @@
+{
+  "name": "lsx-router-app",
+  "version": "1.0.0",
+  "description": "Hash routing example built with LSX",
+  "scripts": {
+    "dev": "lsx dev",
+    "build": "lsx build"
+  },
+  "dependencies": {
+    "lsx-lang": "file:../.."
+  }
+}

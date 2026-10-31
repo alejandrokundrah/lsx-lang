@@ -1,0 +1,9 @@
+src/**
+server/src/**
+**/*.ts
+**/*.map
+**/tsconfig.json
+.vscode/**
+.git/**
+**/*.log
+**/package-lock.json

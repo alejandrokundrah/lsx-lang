@@ -1,0 +1,43 @@
+name: LSX CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install root dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: Run transpiler test suite
+        run: npm test
+
+      - name: Install VS Code extension dependencies
+        working-directory: ./vscode-extension
+        run: npm install --no-audit --no-fund
+
+      - name: Install language server dependencies
+        working-directory: ./vscode-extension/server
+        run: npm install --no-audit --no-fund
+
+      - name: Compile extension and language server
+        run: |
+          npm --prefix ./vscode-extension run compile
+          npm --prefix ./vscode-extension/server run compile
+
+      - name: Quality gate
+        run: npm run quality

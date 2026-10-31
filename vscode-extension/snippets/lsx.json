@@ -1,0 +1,126 @@
+{
+  "Component": {
+    "prefix": "comp",
+    "body": [
+      "component ${1:Name} {",
+      "    ${2:props {",
+      "        ${3:// Add props here}",
+      "    }}",
+      "",
+      "    ${4:state {",
+      "        ${5:// Add state here}",
+      "    }}",
+      "",
+      "    render {",
+      "        return <div>",
+      "            ${6:// JSX here}",
+      "        </div>",
+      "    }",
+      "}",
+      "",
+      "export default ${1:Name}"
+    ],
+    "description": "Create a new LSX component"
+  },
+  "Component with Props": {
+    "prefix": "compprops",
+    "body": [
+      "component ${1:Name} {",
+      "    props {",
+      "        ${2:title}",
+      "    }",
+      "",
+      "    render {",
+      "        return <div>",
+      "            <h1>{${2:title}}</h1>",
+      "        </div>",
+      "    }",
+      "}",
+      "",
+      "export default ${1:Name}"
+    ],
+    "description": "Create a component with props"
+  },
+  "Component with State": {
+    "prefix": "compstate",
+    "body": [
+      "component ${1:Name} {",
+      "    state {",
+      "        ${2:count} = 0",
+      "    }",
+      "",
+      "    render {",
+      "        return <div>",
+      "            <p>{${2:count}}</p>",
+      "        </div>",
+      "    }",
+      "}",
+      "",
+      "export default ${1:Name}"
+    ],
+    "description": "Create a component with state"
+  },
+  "Function": {
+    "prefix": "fn",
+    "body": [
+      "fn ${1:name}(${2:params}) {",
+      "    ${3:// implementation}",
+      "}"
+    ],
+    "description": "Create a function"
+  },
+  "Async Function": {
+    "prefix": "asyncfn",
+    "body": [
+      "async fn ${1:name}(${2:params}) {",
+      "    ${3:// implementation}",
+      "}"
+    ],
+    "description": "Create an async function"
+  },
+  "Effect": {
+    "prefix": "effect",
+    "body": [
+      "effect ${1:init}() {",
+      "    ${2:// effect logic}",
+      "}"
+    ],
+    "description": "Create an effect"
+  },
+  "Import": {
+    "prefix": "imp",
+    "body": [
+      "import { ${1:components} } from '${2:@lsx/core}'"
+    ],
+    "description": "Import from @lsx/core"
+  },
+  "If Statement": {
+    "prefix": "if",
+    "body": [
+      "if (${1:condition}) {",
+      "    ${2:// code}",
+      "}"
+    ],
+    "description": "If statement"
+  },
+  "For Loop": {
+    "prefix": "for",
+    "body": [
+      "for (const ${1:item} of ${2:array}) {",
+      "    ${3:// code}",
+      "}"
+    ],
+    "description": "For-of loop"
+  },
+  "Try Catch": {
+    "prefix": "try",
+    "body": [
+      "try {",
+      "    ${1:// code}",
+      "} catch (${2:err}) {",
+      "    ${3:// error handling}",
+      "}"
+    ],
+    "description": "Try-catch block"
+  }
+}

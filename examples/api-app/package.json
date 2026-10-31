@@ -1,0 +1,12 @@
+{
+  "name": "lsx-api-app",
+  "version": "1.0.0",
+  "description": "API integration example built with LSX",
+  "scripts": {
+    "dev": "lsx dev",
+    "build": "lsx build"
+  },
+  "dependencies": {
+    "lsx-lang": "file:../.."
+  }
+}

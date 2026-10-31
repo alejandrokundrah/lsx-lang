@@ -1,0 +1,69 @@
+{
+  "name": "lsx-lang",
+  "displayName": "LSX Language Support",
+  "description": "Syntax highlighting, IntelliSense, and language support for LSX programming language",
+  "version": "0.2.0",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "activationEvents": [
+    "onLanguage:lsx",
+    "workspaceContains:**/*.lsx"
+  ],
+  "main": "./out/extension.js",
+  "scripts": {
+    "compile": "tsc -p ./tsconfig.json",
+    "watch": "tsc -p ./tsconfig.json -w",
+    "quality": "npm run compile && npm --prefix ./server run compile"
+  },
+  "contributes": {
+    "commands": [
+      {
+        "command": "lsx.checkVersion",
+        "title": "LSX: Check Version"
+      }
+    ],
+    "languages": [
+      {
+        "id": "lsx",
+        "aliases": [
+          "LSX",
+          "lsx"
+        ],
+        "extensions": [
+          ".lsx"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "lsx",
+        "scopeName": "source.lsx",
+        "path": "./syntaxes/lsx.tmLanguage.json"
+      }
+    ],
+    "snippets": [
+      {
+        "language": "lsx",
+        "path": "./snippets/lsx.json"
+      }
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/lsx"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "vscode-languageclient": "^9.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/vscode": "^1.80.0",
+    "typescript": "^5.0.0"
+  }
+}

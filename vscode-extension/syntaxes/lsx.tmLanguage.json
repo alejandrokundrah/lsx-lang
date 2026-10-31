@@ -1,0 +1,59 @@
+{
+  "scopeName": "source.lsx",
+  "patterns": [
+    {
+      "match": "//.*$",
+      "name": "comment.line.double-slash"
+    },
+    {
+      "match": "\\b(component|fn|import|export|default|from|as|if|else|for|in|of|while|do|return|break|continue|const|let|var|function|async|await|new|typeof|instanceof|void|delete|throw|try|catch|finally|true|false|null|undefined|this|super|yield|class|extends)\\b",
+      "name": "keyword.control"
+    },
+    {
+      "match": "\\b(props|state|render|effect|cleanup|style)\\b",
+      "name": "keyword.declaration"
+    },
+    {
+      "match": "\\b([A-Z][a-zA-Z0-9]*)\\b",
+      "name": "entity.name.type.class"
+    },
+    {
+      "begin": "\"",
+      "end": "\"",
+      "name": "string.quoted.double"
+    },
+    {
+      "begin": "'",
+      "end": "'",
+      "name": "string.quoted.single"
+    },
+    {
+      "begin": "`",
+      "end": "`",
+      "name": "string.quoted.template"
+    },
+    {
+      "match": "\\b\\d+\\.\\d+([eE][+-]?\\d+)?\\b",
+      "name": "constant.numeric.float"
+    },
+    {
+      "match": "\\b\\d+\\b",
+      "name": "constant.numeric.integer"
+    },
+    {
+      "begin": "<",
+      "end": ">",
+      "name": "meta.tag"
+    },
+    {
+      "begin": "</",
+      "end": ">",
+      "name": "meta.tag"
+    },
+    {
+      "begin": "{",
+      "end": "}",
+      "name": "meta.embedded.expression"
+    }
+  ]
+}
