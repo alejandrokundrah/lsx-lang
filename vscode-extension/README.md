@@ -1,52 +1,99 @@
-# LSX VS Code Extension
+# LSX Language Support
 
-Syntax highlighting and code snippets for the LSX programming language.
+Syntax highlighting, IntelliSense, and language support for the LSX programming language in Visual Studio Code.
 
 ## Features
 
-- Syntax highlighting for .lsx files
-- Code snippets for common patterns
-- Comment support (// and /* */)
-- JSX highlighting
-- Keyword highlighting
-- LSX language server integration
-- Completion suggestions for keywords, blocks, and lsx-core components
-- Hover documentation for LSX keywords and runtime APIs
-- Real-time diagnostics from the LSX parser and type checker
-- Go to definition and find references
-- Workspace symbol search and rename support
-- Quick fixes for common semantic issues
-- Document formatting support
-- Quality gate scripts for build-validation
+- **Syntax Highlighting**: Beautiful syntax highlighting for LSX files with support for:
+  - HTML tags and components
+  - JSX-like syntax
+  - Keywords and operators
+  - Strings and numbers
+  - Comments
+
+- **Code Snippets**: 30+ code snippets for common patterns:
+  - Component templates (`comp`, `compprops`, `compstate`, `page`)
+  - Function templates (`fn`, `asyncfn`)
+  - UI components (`btn`, `input`, `card`, `modal`, `grid`, `flex`)
+  - API helpers (`get`, `post`)
+  - Event handlers (`onclick`, `onchange`)
+  - Control flow (`if`, `for`, `try`, `cond`, `map`)
+
+- **Emmet Support**: Use Emmet abbreviations to quickly generate HTML-like tags
+
+- **IntelliSense**: 
+  - Auto-completion for keywords and built-in components
+  - Hover documentation
+  - Go to definition
+  - Find references
+  - Rename symbols
+
+- **Diagnostics**: Real-time error and warning detection
+
+- **Code Formatting**: Basic code formatting support
+
+- **File Icons**: Custom LSX file icon for easy identification
+
+- **Code Folding**: Folding support for components, functions, and code blocks
+
+- **Bracket Pair Colorization**: Colored bracket matching for better readability
 
 ## Installation
 
-To install this extension locally:
+### From VSIX
 
-1. Open VS Code
-2. Press `F5` to launch Extension Development Host
-3. Install the extension from the current directory
+1. Download the latest `.vsix` file from the [Releases](https://github.com/alejandrokundrah/lsx-lang/releases) page
+2. Open VS Code
+3. Press `Ctrl+Shift+P` (or `Cmd+Shift+P` on Mac)
+4. Run "Extensions: Install from VSIX..."
+5. Select the downloaded `.vsix` file
 
-## Snippets
+### From Marketplace
 
-- `comp` - Create a new component
+Search for "LSX Language Support" in the VS Code Extensions Marketplace.
+
+## Usage
+
+### Snippets
+
+Type any of the following prefixes and press `Tab` to expand:
+
+- `comp` - Create a new LSX component
 - `compprops` - Create a component with props
 - `compstate` - Create a component with state
+- `page` - Create a full page component
 - `fn` - Create a function
 - `asyncfn` - Create an async function
-- `effect` - Create an effect
-- `imp` - Import from lsx-core
-- `if` - If statement
-- `for` - For-of loop
-- `try` - Try-catch block
+- `btn` - Button component
+- `input` - Input component
+- `card` - Card component
+- `grid` - Grid layout
+- `flex` - Flex layout
+- `get` - API GET request
+- `post` - API POST request
+- And many more...
 
-## Development
+### Emmet
 
-This is a basic extension. Future enhancements could include:
+Type HTML-like abbreviations and press `Tab` to expand:
 
-- Language server for IntelliSense
-- Error highlighting
-- Go to definition
-- Auto-completion
-- Hover information
-- Diagnostics integration
+- `div` → `<div></div>`
+- `section` → `<section></section>`
+- `header` → `<header></header>`
+- And more...
+
+## Requirements
+
+- Visual Studio Code 1.80.0 or higher
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## License
+
+MIT License - see [LICENSE](LICENSE) file for details.
+
+## Support
+
+For issues and feature requests, please visit the [GitHub repository](https://github.com/alejandrokundrah/lsx-lang).
