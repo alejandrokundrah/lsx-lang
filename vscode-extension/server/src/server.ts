@@ -59,10 +59,6 @@ connection.onInitialize((params: InitializeParams) => {
             documentSymbolProvider: true,
             documentFormattingProvider: true,
             codeActionProvider: true,
-            diagnosticProvider: {
-                interFileDependencies: false,
-                workspaceDiagnostics: false,
-            },
         },
     };
     return result;
@@ -247,6 +243,12 @@ documents.onDidChangeContent((change) => {
 documents.onDidOpen((change) => {
     const diagnostics = validateTextDocument(change.document);
     connection.sendDiagnostics({ uri: change.document.uri, diagnostics });
+});
+
+connection.onDocumentSymbol((params: any) => {
+    const document = documents.get(params.textDocument.uri);
+    if (!document) return [];
+    return collectDocumentSymbols(document) as any;
 });
 
 connection.onCompletion(
