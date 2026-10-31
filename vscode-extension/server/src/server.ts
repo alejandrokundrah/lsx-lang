@@ -31,8 +31,8 @@ import {
 
 import { TextDocument } from 'vscode-languageserver-textdocument';
 
-const LSXTranspiler = require('../../../transpiler');
-const TypeChecker = require('../../../type-checker');
+const LSXTranspiler = require('../../transpiler');
+const TypeChecker = require('../../type-checker');
 
 const connection = createConnection(ProposedFeatures.all);
 const documents = new TextDocuments(TextDocument);
