@@ -14,7 +14,7 @@ const Parser = require('./parser');
 const Codegen = require('./codegen');
 const TypeChecker = require('./type-checker');
 
-// Default core component names from @lsx/core
+// Default core component names from lsx-core
 const DEFAULT_CORE_NAMES = [
     'Page', 'Header', 'Footer', 'Section', 'Body',
     'Button', 'Card', 'Modal', 'Grid', 'Flex', 'Input',
@@ -25,7 +25,7 @@ const DEFAULT_CORE_NAMES = [
 class LSXTranspiler {
     /**
      * @param {object} options
-     * @param {string[]} options.coreNames components exported by @lsx/core,
+     * @param {string[]} options.coreNames components exported by lsx-core,
      *                                     used to auto-import missing tags
      */
     constructor(options) {

@@ -1,5 +1,5 @@
 /**
- * @lsx/core - Type Definitions
+ * lsx-core - Type Definitions
  *
  * TypeScript definitions for LSX core components
  */

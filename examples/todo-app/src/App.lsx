@@ -1,4 +1,4 @@
-import { Header, Footer, Section, Body, Button, Card, Input } from '@lsx/core'
+import { Header, Footer, Section, Body, Button, Card, Input } from 'lsx-core'
 
 component TodoApp {
     state {

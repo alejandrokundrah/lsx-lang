@@ -90,9 +90,9 @@
   "Import": {
     "prefix": "imp",
     "body": [
-      "import { ${1:components} } from '${2:@lsx/core}'"
+      "import { ${1:components} } from '${2:lsx-core}'"
     ],
-    "description": "Import from @lsx/core"
+    "description": "Import from lsx-core"
   },
   "If Statement": {
     "prefix": "if",

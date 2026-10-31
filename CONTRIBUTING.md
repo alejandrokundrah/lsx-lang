@@ -46,7 +46,7 @@ The LSX transpiler follows a pipeline:
 3. Add code generation in `codegen.js`
 4. Add tests in `test.js`
 
-### Adding a New Component to @lsx/core
+### Adding a New Component to lsx-core
 
 1. Add component to `packages/lsx-core/index.js`
 2. Add component name to `DEFAULT_CORE_NAMES` in `transpiler.js`
@@ -86,7 +86,7 @@ In short:
 3. Run `npm run quality`
 4. Tag `vX.Y.Z` (matching `package.json`) and push the tag — the release
    workflow builds the VSIX, creates the GitHub release, then publishes
-   `@lsx/core` followed by `lsx-lang` to npm
+   `lsx-core` followed by `lsx-lang` to npm
 
 ## Submitting Changes
 

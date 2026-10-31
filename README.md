@@ -18,7 +18,7 @@ LSX makes programming accessible to everyone by providing:
 - [x] Language specification
 - [x] Transpiler (LSX → React/JavaScript)
 - [x] CLI tool (init, build, add component/page)
-- [x] Component library (@lsx/core)
+- [x] Component library (lsx-core)
 - [x] Development server with hot reload
 - [x] Configuration system
 
@@ -170,7 +170,7 @@ component Counter {
 ### Using Layout Components
 
 ```lsx
-import { Header, Footer, Section, Body } from '@lsx/core'
+import { Header, Footer, Section, Body } from 'lsx-core'
 
 component LandingPage {
     render {
@@ -249,7 +249,7 @@ LSX projects use a `lsx.config.json` file for configuration:
 
 ```lsx
 // main.lsx
-import { Header, Footer, Section, Body } from '@lsx/core'
+import { Header, Footer, Section, Body } from 'lsx-core'
 
 component LandingPage {
     render {
@@ -325,7 +325,7 @@ lsx dev
 
 ## Available Components
 
-### Layout Components (@lsx/core)
+### Layout Components (lsx-core)
 
 - **Page**: Main page container
 - **Header**: Top section with title and subtitle
@@ -333,7 +333,7 @@ lsx dev
 - **Section**: Content section container
 - **Body**: Main content container
 
-### UI Components (@lsx/core)
+### UI Components (lsx-core)
 
 - **Button**: Clickable button with variants (primary, secondary, outline)
 - **Card**: Container with border and shadow

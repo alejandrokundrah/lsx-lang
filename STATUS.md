@@ -23,7 +23,7 @@ Each item below was exercised as part of this status pass:
 | Dev server | serves the app, injects the HMR client, serves the bundle |
 | Production server (`npm start`) | serves the built app with production React, 404s unknown paths, rejects path traversal |
 | Development React swap | `index.html` ships production React; `lsx dev` serves the development build |
-| `@lsx/core` resolution | projects bundle with no `node_modules` present |
+| `lsx-core` resolution | projects bundle with no `node_modules` present |
 | Examples | `todo-app`, `router-app`, `api-app` all build; `todo-app` renders in a browser with no console errors |
 | npm packaging | `npm pack` produces a 38 kB / 18-file tarball (runtime files only) |
 | VS Code extension + language server | both compile clean under `tsc` |
@@ -40,7 +40,7 @@ publish; CI runs it on push and pull request.
 - **CLI**: `lsx init`, `lsx build`, `lsx dev [port]`, `lsx add component|page`
 - **Dev server**: file watching, hot reload over SSE, error reporting, dev React swap
 - **Production server**: generated `server.js` (`npm start` builds and serves)
-- **Component library** (`@lsx/core`): layout, UI, forms, routing, API helpers
+- **Component library** (`lsx-core`): layout, UI, forms, routing, API helpers
 - **Editor tooling**: VS Code extension with syntax highlighting, snippets and a language server
 - **Type checking**: basic, opt-in via `"typeCheck": true` in `lsx.config.json`
 
@@ -48,7 +48,7 @@ publish; CI runs it on push and pull request.
 
 These are the gaps between the current state and a production-grade release:
 
-1. **Not published to npm.** `lsx-lang` and `@lsx/core` return 404 on the
+1. **Not published to npm.** `lsx-lang` and `lsx-core` return 404 on the
    registry, so installation is clone-and-`npm link` only. The published
    package also needs a `repository` field and a `LICENSE` file (the license is
    declared as MIT in `package.json` but no file ships yet).
@@ -77,7 +77,7 @@ These are the gaps between the current state and a production-grade release:
 
 Ordered by what unblocks external adoption first:
 
-1. **Publish to npm** — add `LICENSE` and `repository`, publish `@lsx/core`,
+1. **Publish to npm** — add `LICENSE` and `repository`, publish `lsx-core`,
    then `lsx-lang`; switch the README install section to `npm install -g lsx-lang`
 2. **Production bundling** — bundle React locally, hashed filenames, code splitting
 3. **Broader test coverage** — type checker, config loader, and an editor smoke test
@@ -101,7 +101,7 @@ npm start      # production build + serve
 ## Example code
 
 ```lsx
-import { Header, Footer, Section, Body, Button } from '@lsx/core'
+import { Header, Footer, Section, Body, Button } from 'lsx-core'
 
 component App {
     state {

@@ -10,7 +10,7 @@ Syntax highlighting and code snippets for the LSX programming language.
 - JSX highlighting
 - Keyword highlighting
 - LSX language server integration
-- Completion suggestions for keywords, blocks, and @lsx/core components
+- Completion suggestions for keywords, blocks, and lsx-core components
 - Hover documentation for LSX keywords and runtime APIs
 - Real-time diagnostics from the LSX parser and type checker
 - Go to definition and find references
@@ -35,7 +35,7 @@ To install this extension locally:
 - `fn` - Create a function
 - `asyncfn` - Create an async function
 - `effect` - Create an effect
-- `imp` - Import from @lsx/core
+- `imp` - Import from lsx-core
 - `if` - If statement
 - `for` - For-of loop
 - `try` - Try-catch block

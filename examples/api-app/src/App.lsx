@@ -1,4 +1,4 @@
-import { Header, Footer, Section, Body, Page, Card, Button, Input, get, post } from '@lsx/core'
+import { Header, Footer, Section, Body, Page, Card, Button, Input, get, post } from 'lsx-core'
 
 component App {
     state {

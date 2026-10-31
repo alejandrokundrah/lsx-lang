@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * @lsx/core - Core Layout Components
+ * lsx-core - Core Layout Components
  *
  * This package provides the fundamental layout components used in LSX applications.
  * All components are designed to be simple, flexible, and customizable.

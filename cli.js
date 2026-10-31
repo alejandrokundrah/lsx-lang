@@ -124,7 +124,7 @@ function createProject(projectName) {
     });
 
     // Create App.lsx
-    const appLsx = `import { Header, Footer, Section, Body } from '@lsx/core'
+    const appLsx = `import { Header, Footer, Section, Body } from 'lsx-core'
 
 component App {
     render {

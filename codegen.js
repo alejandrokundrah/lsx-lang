@@ -213,10 +213,10 @@ class Codegen {
             this.line(`import { ${namedReact.join(', ')} } from 'react';`);
         }
 
-        // 3. auto-imported @lsx/core layout components
+        // 3. auto-imported lsx-core layout components
         if (this.coreImports.size) {
             const names = Array.from(this.coreImports).sort();
-            this.line(`import { ${names.join(', ')} } from '@lsx/core';`);
+            this.line(`import { ${names.join(', ')} } from 'lsx-core';`);
         }
 
         if (this.imports.length || neededReact.length || this.coreImports.size) {
@@ -321,7 +321,7 @@ class Codegen {
             this.componentHoists.set(key, keep);
         });
 
-        // Pass 3: resolve capitalized JSX tags to @lsx/core imports.
+        // Pass 3: resolve capitalized JSX tags to lsx-core imports.
         tags.forEach((tag) => {
             if (!tag || !isCapitalized(tag)) return;
             if (this.declared.has(tag)) return;
@@ -329,10 +329,10 @@ class Codegen {
                 this.coreImports.add(tag);
                 return;
             }
-            this.warn(`Unknown component <${tag}>: not defined or imported in this file, and not exported by @lsx/core`);
+            this.warn(`Unknown component <${tag}>: not defined or imported in this file, and not exported by lsx-core`);
         });
 
-        // Pass 4: auto-import helper functions from @lsx/core
+        // Pass 4: auto-import helper functions from lsx-core
         const helperFunctions = ['get', 'post', 'put', 'del'];
         walk(this.program, (node) => {
             if (node.type === 'CallExpression' && node.callee

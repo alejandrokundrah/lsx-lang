@@ -193,7 +193,7 @@ export default StyledCard
 // Test 7: Import statements
 runner.test('Import statements', () => {
     const source = `
-import { Header, Footer } from '@lsx/core'
+import { Header, Footer } from 'lsx-core'
 
 component App {
     render {
@@ -207,7 +207,7 @@ export default App
     const transpiler = new LSXTranspiler();
     const { code } = transpiler.transpile(source);
 
-    assert(code.includes("import { Header, Footer } from '@lsx/core'"), 'Should preserve imports');
+    assert(code.includes("import { Header, Footer } from 'lsx-core'"), 'Should preserve imports');
 });
 
 // Test 8: Auto-import React

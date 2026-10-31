@@ -9,7 +9,7 @@ covers the one-time setup and the checklist you run before tagging.
 1. **npm account** with publish rights for the `lsx` scope (`npm login`).
 2. **`NPM_TOKEN` repository secret** — create an npm automation token (or a
    granular token with *Read and write* publish permission for `lsx-lang` and
-   `@lsx/core`) and add it to the repository secrets as `NPM_TOKEN`. The
+   `lsx-core`) and add it to the repository secrets as `NPM_TOKEN`. The
    workflow passes it to npm as `NODE_AUTH_TOKEN`. Tokens never belong in the
    repository itself.
 3. **Repository metadata** — fill in `repository`, `homepage` and `bugs` in
@@ -20,13 +20,13 @@ covers the one-time setup and the checklist you run before tagging.
 
 | Package | Path | Publish |
 | --- | --- | --- |
-| `@lsx/core` | `packages/lsx-core` | **First.** Scoped, so it needs `--access public` (set in its `publishConfig`). |
+| `lsx-core` | `packages/lsx-core` | **First.** Scoped, so it needs `--access public` (set in its `publishConfig`). |
 | `lsx-lang` | repository root | Second. The CLI; ships a copy of `packages/lsx-core` inside its tarball. |
 | VS Code extension | `vscode-extension` | Not on npm — released as a `.vsix` attached to the GitHub release. |
 
-`lsx-lang` does **not** require `@lsx/core` at install time: the bundler falls
+`lsx-lang` does **not** require `lsx-core` at install time: the bundler falls
 back to the copy shipped in its own tarball, so publishing `lsx-lang` alone
-works. Publish `@lsx/core` regardless — it is what a project needs if it
+works. Publish `lsx-core` regardless — it is what a project needs if it
 consumes compiled output through its own bundler instead of `lsx build`.
 
 ## Before you tag
@@ -56,7 +56,7 @@ The workflow then:
 1. installs dependencies, runs `npm run quality`, packages the `.vsix`
 2. creates the GitHub release with the `.vsix` attached
 3. re-runs the quality gate and verifies the tag matches the package version
-4. publishes `@lsx/core`, then `lsx-lang`
+4. publishes `lsx-core`, then `lsx-lang`
 
 ## Publishing manually
 
@@ -65,7 +65,7 @@ Only needed if CI is unavailable:
 ```bash
 npm run quality
 
-# @lsx/core
+# lsx-core
 cd packages/lsx-core && npm publish --access public && cd ../..
 
 # lsx-lang

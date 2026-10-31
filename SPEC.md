@@ -228,7 +228,7 @@ LSX compiles to:
 
 ```lsx
 // main.lsx
-import { Header, Footer, Section } from '@lsx/core'
+import { Header, Footer, Section } from 'lsx-core'
 
 component LandingPage {
     render {

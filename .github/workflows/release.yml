@@ -82,8 +82,8 @@ jobs:
             exit 1
           fi
 
-      # Publish order matters: @lsx/core first, then lsx-lang.
-      - name: Publish @lsx/core
+      # Publish order matters: lsx-core first, then lsx-lang.
+      - name: Publish lsx-core
         working-directory: ./packages/lsx-core
         run: npm publish --access public
         env:

@@ -1,4 +1,4 @@
-import { Router, Link, Header, Footer, Section, Body, Page, Button, Card } from '@lsx/core'
+import { Router, Link, Header, Footer, Section, Body, Page, Button, Card } from 'lsx-core'
 
 component Home {
     props {

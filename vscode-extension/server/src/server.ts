@@ -278,8 +278,8 @@ connection.onCompletion(
             items.push({
                 label: comp,
                 kind: CompletionItemKind.Class,
-                detail: '@lsx/core component',
-                documentation: `Component from @lsx/core: ${comp}`,
+                detail: 'lsx-core component',
+                documentation: `Component from lsx-core: ${comp}`,
             });
         });
 
@@ -287,7 +287,7 @@ connection.onCompletion(
             items.push({
                 label: helper,
                 kind: CompletionItemKind.Function,
-                detail: '@lsx/core API helper',
+                detail: 'lsx-core API helper',
                 documentation: `HTTP ${helper} helper function`,
             });
         });
@@ -631,7 +631,7 @@ connection.onHover((textDocumentPosition: TextDocumentPositionParams): Hover | n
         return {
             contents: {
                 kind: MarkupKind.Markdown,
-                value: `**${word}**\n\n${componentDocs[word]}\n\nFrom @lsx/core`,
+                value: `**${word}**\n\n${componentDocs[word]}\n\nFrom lsx-core`,
             },
         };
     }
