@@ -44,6 +44,14 @@
   ],
   "author": "LSX Team",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lsx-lang/lsx.git"
+  },
+  "homepage": "https://github.com/lsx-lang/lsx#readme",
+  "bugs": {
+    "url": "https://github.com/lsx-lang/lsx/issues"
+  },
   "dependencies": {
     "@babel/core": "^7.23.0",
     "@babel/preset-env": "^7.23.0",
