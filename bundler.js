@@ -41,18 +41,18 @@ const umdGlobalsPlugin = {
     },
 };
 
-// @lsx/core ships inside this package (packages/lsx-core), so a project can
+// lsx-core ships inside this package (packages/lsx-core), so a project can
 // bundle without installing it separately — required for `lsx init` projects,
-// since @lsx/core is not published to npm.
+// since lsx-core is not published to npm.
 const CORE_PACKAGE_DIR = path.join(__dirname, 'packages', 'lsx-core');
 
 const coreFallbackPlugin = {
     name: 'lsx-core-fallback',
     setup(build) {
-        build.onResolve({ filter: /^@lsx\/core$/ }, (args) => {
+        build.onResolve({ filter: /^lsx-core$/ }, (args) => {
             // Prefer a copy installed in the user's own project.
             try {
-                return { path: require.resolve('@lsx/core', { paths: [args.resolveDir] }) };
+                return { path: require.resolve('lsx-core', { paths: [args.resolveDir] }) };
             } catch (err) {
                 // Not installed locally — fall through to the bundled copy.
             }

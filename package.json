@@ -8,7 +8,7 @@
     "./package.json": "./package.json"
   },
   "bin": {
-    "lsx": "./cli.js"
+    "lsx": "cli.js"
   },
   "files": [
     "cli.js",
@@ -46,7 +46,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/lsx-lang/lsx.git"
+    "url": "git+https://github.com/lsx-lang/lsx.git"
   },
   "homepage": "https://github.com/lsx-lang/lsx#readme",
   "bugs": {
@@ -62,7 +62,7 @@
     "express": "^4.18.0"
   },
   "devDependencies": {
-    "@lsx/core": "file:./packages/lsx-core",
+    "lsx-core": "file:./packages/lsx-core",
     "@types/node": "^20.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
