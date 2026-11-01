@@ -1,128 +1,153 @@
-# LSX - The Easiest Programming Language
+# LSX — Lumina Syntax eXtended
 
-**LSX (Lumina Syntax eXtended)** - A modern, component-based programming language that compiles to React/JavaScript.
+**A component-based programming language for building web interfaces with a simpler, more readable syntax.**
 
-## Vision
+LSX is a programming language with its own `.lsx` source files, component syntax, compiler, command-line tools, and core UI library. It compiles to React/JavaScript, allowing LSX projects to use the wider JavaScript ecosystem.
 
-LSX makes programming accessible to everyone by providing:
-- ✅ Custom `.lsx` file extension
-- ✅ Simple, readable syntax
-- ✅ Component-based architecture
-- ✅ Built-in layout components (Header, Footer, Section, Body)
-- ✅ Full development ecosystem (CLI, build system, dev server)
-- ✅ Compiles to modern React/JavaScript
+> **Project status:** LSX is published on npm and is actively evolving. Some capabilities are still basic. Review the current specification and examples before depending on a feature in production.
 
-## Status
+[![npm version](https://img.shields.io/npm/v/lsx-lang)](https://www.npmjs.com/package/lsx-lang)
+[![Core package](https://img.shields.io/npm/v/lsx-core)](https://www.npmjs.com/package/lsx-core)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-### Phase 1: Foundation ✅
-- [x] Language specification
-- [x] Transpiler (LSX → React/JavaScript)
-- [x] CLI tool (init, build, add component/page)
-- [x] Component library (lsx-core)
-- [x] Development server with hot reload
-- [x] Configuration system
+---
 
-### Phase 2: Development Tools ✅
-- [x] Hot reload dev server with file watching
-- [x] Enhanced error reporting
-- [x] Build optimization (minification, tree-shaking)
-- [x] Source maps support
+## Contents
 
-### Phase 3: Component Library ✅
-- [x] Core components (Header, Footer, Section, Body, Page)
-- [x] UI components (Button, Card, Modal)
-- [x] Layout system (Grid, Flexbox)
-- [x] Form components (Input)
-- [x] Routing (Router, Link)
-- [x] API helpers (get, post, put, del)
+- [Why LSX?](#why-lsx)
+- [Features](#features)
+- [Requirements](#requirements)
+- [Installation](#installation)
+- [Quick Start](#quick-start)
+- [Your First Component](#your-first-component)
+- [Props and State](#props-and-state)
+- [Using lsx-core](#using-lsx-core)
+- [CLI Commands](#cli-commands)
+- [Configuration](#configuration)
+- [Examples](#examples)
+- [Testing](#testing)
+- [VS Code Support](#vs-code-support)
+- [Current Limitations](#current-limitations)
+- [Roadmap](#roadmap)
+- [Contributing](#contributing)
+- [License](#license)
 
-### Phase 4: Advanced Features ✅
-- [x] CSS-in-LSX (style blocks)
-- [x] State management (built-in useState/useEffect)
-- [x] Async/await support
-- [x] Error handling (try/catch)
-- [x] API integration
-- [x] Type checking (basic, opt-in via `typeCheck` in lsx.config.json)
-- [x] VS Code extension (syntax highlighting, snippets, language server)
+## Why LSX?
+
+Modern web development is powerful, but its tooling and syntax can feel difficult when you are starting out. LSX explores a more approachable way to write component-based interfaces.
+
+The project focuses on:
+
+- **Readable syntax:** Write interface components in `.lsx` files.
+- **Component-based development:** Organise interfaces into reusable components.
+- **An integrated toolchain:** Use the LSX CLI, compiler, development server, and core component library.
+- **JavaScript ecosystem compatibility:** Compile to React/JavaScript instead of requiring a separate browser runtime.
+
+LSX does not replace JavaScript or React at runtime. It provides an alternative authoring language and development workflow built on them.
+
+## Features
+
+The repository includes:
+
+- Custom `.lsx` source-file extension
+- Component declarations and render blocks
+- Component props and state
+- Component methods and event handlers
+- JSX-style markup
+- Import and export statements
+- Compiler/transpiler targeting React/JavaScript
+- CLI for project creation, development, builds, and scaffolding
+- Development server with file watching and hot reload
+- Build options including minification, tree-shaking, and source maps
+- Basic opt-in type checking
+- CSS-in-LSX style blocks
+- Async/await and try/catch support
+- Router and Link components
+- API helpers in `lsx-core`
+- VS Code extension with syntax highlighting, snippets, and language-server support
+
+## Requirements
+
+- Node.js 18 or later
+- npm
+
+Check your installed versions:
+
+```bash
+node --version
+npm --version
+```
 
 ## Installation
 
-LSX is **not yet published to npm**, so install it from a clone of this repository:
+Install the LSX command-line package globally:
 
 ```bash
-git clone <this repository>
-cd lsx
-npm install
-npm link          # makes the `lsx` command available on your PATH
+npm install -g lsx-lang
 ```
 
-Verify the installation:
+The core component library is published separately:
+
+```bash
+npm install lsx-core
+```
+
+Verify that the CLI is available:
 
 ```bash
 lsx --help
-npm test          # runs the unit + end-to-end suites
 ```
 
-Without `npm link`, run the CLI directly with `node cli.js <command>`.
+### npm Packages
 
-> Publishing to npm is on the roadmap — see [PUBLISHING.md](PUBLISHING.md) for
-> the release checklist and one-time setup. Once published, this section will
-> read `npm install -g lsx-lang`.
+- [lsx-lang on npm](https://www.npmjs.com/package/lsx-lang)
+- [lsx-core on npm](https://www.npmjs.com/package/lsx-core)
 
 ## Quick Start
 
-### Create a New Project
+Create a new project:
 
 ```bash
-lsx init my-app
-cd my-app
+lsx init my-first-app
+cd my-first-app
 ```
 
-No `npm install` is required: React is loaded from a CDN and the generated
-`server.js` uses only Node core modules.
-
-### Build the Project
-
-```bash
-lsx build
-```
-
-### Start Development Server
+Start the development server:
 
 ```bash
 lsx dev
 ```
 
-### Run the Production Build
-
-`lsx build` writes compiled output to `dist/` and a browser bundle to `dist/bundle/`.
-Scaffolded projects include a `server.js`, so build-and-serve is one command:
+The default development port is `3000`. You can specify another port:
 
 ```bash
-npm start          # runs: lsx build && node server.js
+lsx dev 4000
 ```
 
-The generated `public/index.html` loads the **production** React build, so the
-output is deployable as-is: `node server.js`, or any static host that serves
-both `public/` and `dist/`. During `lsx dev` the server swaps in the development
-React build for better warnings.
-
-### Add Components
+When you are ready to compile your project:
 
 ```bash
-lsx add component Header
-lsx add page Home
+lsx build
 ```
 
-## LSX Syntax
+The documented build output is written to `dist/`, with a browser bundle under `dist/bundle/`.
 
-### Basic Component
+Scaffolded projects include a production server and an `npm start` script:
+
+```bash
+npm start
+```
+
+## Your First Component
+
+Create or edit an `.lsx` file:
 
 ```lsx
 component HelloWorld {
     render {
         return <div>
             <h1>Hello, World!</h1>
+            <p>My first component is written in LSX.</p>
         </div>
     }
 }
@@ -130,7 +155,13 @@ component HelloWorld {
 export default HelloWorld
 ```
 
-### Component with Props
+A component declaration defines a reusable UI unit. Its `render` block returns JSX-style markup, and `export default` makes the component the module's default export.
+
+## Props and State
+
+### Props
+
+Props allow a component to receive values from its parent:
 
 ```lsx
 component Greeting {
@@ -144,9 +175,19 @@ component Greeting {
         </div>
     }
 }
+
+export default Greeting
 ```
 
-### Component with State
+A parent can provide the value through an attribute:
+
+```lsx
+<Greeting name="Alex" />
+```
+
+### State
+
+State stores values owned by a component:
 
 ```lsx
 component Counter {
@@ -157,7 +198,7 @@ component Counter {
     render {
         return <div>
             <p>Count: {count}</p>
-            <button onClick={increment}>+</button>
+            <button onClick={increment}>Increase</button>
         </div>
     }
 
@@ -165,61 +206,104 @@ component Counter {
         count = count + 1
     }
 }
+
+export default Counter
 ```
 
-### Using Layout Components
+In this example, `count` starts at zero. Clicking the button invokes `increment`, which updates the component's state.
+
+## Using lsx-core
+
+The `lsx-core` package provides reusable layout and UI components, routing components, and API helpers.
+
+Example:
 
 ```lsx
-import { Header, Footer, Section, Body } from 'lsx-core'
+import { Page, Header, Footer, Section, Body, Button } from 'lsx-core'
 
 component LandingPage {
     render {
         return <Page>
-            <Header title="My Website" subtitle="Welcome" />
+            <Header
+                title="Welcome to LSX"
+                subtitle="Build your next idea."
+            />
             <Section>
                 <Body>
-                    <h1>Main Content</h1>
-                    <p>This is the body section.</p>
+                    <h1>Build with components</h1>
+                    <p>Compose a page from reusable interface elements.</p>
+                    <Button>Get started</Button>
                 </Body>
             </Section>
-            <Footer copyright="2024" />
+            <Footer copyright="2026 LSX" />
         </Page>
     }
 }
+
+export default LandingPage
 ```
 
-## Project Structure
+### Layout Components
 
-```
-my-app/
-├── src/
-│   ├── App.lsx              # Main app component
-│   ├── components/         # Reusable components
-│   │   ├── Header.lsx
-│   │   └── Footer.lsx
-│   └── pages/               # Page components
-│       └── Home.lsx
-├── public/                  # Static assets
-│   └── index.html
-├── dist/                    # Compiled JavaScript + browser bundle
-├── server.js                # Production server (npm start)
-├── lsx.config.json          # LSX configuration
-└── package.json             # Node dependencies
-```
+| Component | Purpose |
+|---|---|
+| `Page` | Page-level container |
+| `Header` | Header with title and subtitle |
+| `Footer` | Footer with copyright text |
+| `Section` | Section container |
+| `Body` | Main content wrapper |
+
+### UI Components
+
+| Component | Purpose |
+|---|---|
+| `Button` | Button with primary, secondary, and outline variants |
+| `Card` | Content container with border and shadow |
+| `Modal` | Dialog overlay |
+| `Grid` | CSS Grid container |
+| `Flex` | Flexbox container |
+| `Input` | Text input |
+
+### Routing
+
+| Component | Purpose |
+|---|---|
+| `Router` | Hash-based router |
+| `Link` | Navigation link |
+
+### API Helpers
+
+The package exports the following fetch helpers:
+
+- `get(url, options?)`
+- `post(url, data, options?)`
+- `put(url, data, options?)`
+- `del(url, options?)`
+
+They return parsed JSON and throw an error when the HTTP response is unsuccessful. These are lightweight wrappers around the browser Fetch API, not a replacement for a full API client.
 
 ## CLI Commands
 
+| Command | Description |
+|---|---|
+| `lsx --help` | Display CLI help |
+| `lsx init <name>` | Create a new LSX project |
+| `lsx dev [port]` | Start the development server |
+| `lsx build` | Compile the project |
+| `lsx add component <name>` | Scaffold a component |
+| `lsx add page <name>` | Scaffold a page |
+
+For production, scaffolded projects provide:
+
 ```bash
-lsx init <name>              # Create new LSX project
-lsx build                    # Build LSX project to JavaScript
-lsx dev [port]               # Start development server (default: 3000)
-lsx add component <name>     # Add a new component
-lsx add page <name>          # Add a new page
+npm start
 ```
 
 ## Configuration
 
-LSX projects use a `lsx.config.json` file for configuration:
+LSX projects use an `lsx.config.json` file.
+
+Example:
 
 ```json
 {
@@ -236,157 +320,166 @@ LSX projects use a `lsx.config.json` file for configuration:
 
 ### Configuration Options
 
-- **entry**: Path to the main LSX file (default: `./src/App.lsx`)
-- **output**: Directory for compiled JavaScript (default: `./dist`)
-- **publicDir**: Directory for static assets (default: `./public`)
-- **port**: Development server port (default: `3000`)
-- **sourceMaps**: Enable source maps for debugging (default: `false`)
-- **minify**: Minify output JavaScript (default: `false`)
-- **typeCheck**: Run the basic type checker and report problems as build warnings (default: `false`)
-- **hotReload**: Enable hot module replacement (default: `true`)
+| Option | Description | Default |
+|---|---|---|
+| `entry` | Main LSX entry file | `./src/App.lsx` |
+| `output` | Compiled output directory | `./dist` |
+| `publicDir` | Static assets directory | `./public` |
+| `port` | Development server port | `3000` |
+| `sourceMaps` | Generate source maps | `false` |
+| `minify` | Minify generated JavaScript | `false` |
+| `typeCheck` | Run the basic type checker | `false` |
+| `hotReload` | Enable hot module replacement | `true` |
 
-## Example: Landing Page
+## Examples
 
-```lsx
-// main.lsx
-import { Header, Footer, Section, Body } from 'lsx-core'
+The repository includes example projects.
 
-component LandingPage {
-    render {
-        return <Page>
-            <Header
-                title="Welcome to LSX"
-                subtitle="The Easiest Programming Language"
-            />
-            <Section>
-                <Body>
-                    <h1>Build Anything</h1>
-                    <p>LSX makes development simple and fun.</p>
-                    <p>Start building your dream project today!</p>
-                </Body>
-            </Section>
-            <Footer copyright="2024 LSX" />
-        </Page>
-    }
-}
+### Todo App
 
-export default LandingPage
-```
+Location: `examples/todo-app`
 
-## Example: Todo App
+Demonstrates:
 
-A complete Todo app example is available in the `examples/todo-app` directory. It demonstrates:
-
-- State management with `useState`
-- Effects with `useEffect`
-- LocalStorage persistence
+- State management
+- Effects
+- Local-storage persistence
 - Component composition
 - Event handling
 
-To run the example:
+Run:
 
 ```bash
 cd examples/todo-app
 lsx dev
 ```
 
-## Example: Router App
+### Router App
 
-A routing example is available in the `examples/router-app` directory. It demonstrates:
+Location: `examples/router-app`
 
-- Hash-based routing with Router component
-- Navigation with Link component
+Demonstrates:
+
+- Hash-based routing
+- Navigation with Link
 - Multi-page application structure
 - Route parameters
 
-To run the example:
+Run:
 
 ```bash
 cd examples/router-app
 lsx dev
 ```
 
-## Example: API App
+### API App
 
-An API integration example is available in the `examples/api-app` directory. It demonstrates:
+Location: `examples/api-app`
 
-- API helpers (get, post)
-- Async/await patterns
+Demonstrates:
+
+- API helpers
+- Async/await
 - Error handling with try/catch
 - Loading states
-- Data fetching from real APIs
+- Data fetching
 
-To run the example:
+Run:
 
 ```bash
 cd examples/api-app
 lsx dev
 ```
 
-## Available Components
-
-### Layout Components (lsx-core)
-
-- **Page**: Main page container
-- **Header**: Top section with title and subtitle
-- **Footer**: Bottom section with copyright
-- **Section**: Content section container
-- **Body**: Main content container
-
-### UI Components (lsx-core)
-
-- **Button**: Clickable button with variants (primary, secondary, outline)
-- **Card**: Container with border and shadow
-- **Modal**: Dialog overlay
-- **Grid**: CSS Grid layout
-- **Flex**: Flexbox layout
-- **Input**: Text input field
-
 ## Testing
 
-Run the test suite:
+From a clone of the repository, install development dependencies:
+
+```bash
+npm install
+```
+
+Run the test suites:
 
 ```bash
 npm test
 ```
 
-Two suites run under `npm test`:
+The test command runs two suites:
 
-**Unit (`test.js`)** — transpiler behaviour:
+**Unit tests (`test.js`)**
+
 - Basic component transpilation
 - Props, state, and methods
 - Effects and lifecycle
 - JSX compilation
 - Import/export statements
-- Auto-imports (React, useState, useEffect)
+- Automatic React and hook imports
 
-**End-to-end (`test-e2e.js`)** — the CLI as a user drives it:
-- `lsx init` scaffolds a project that builds with no `npm install`
-- `lsx build` produces a real browser bundle
-- failing builds exit non-zero (unresolvable imports, syntax errors, missing `src/`)
-- the dev server serves the app, injects HMR and swaps in development React
-- the generated production server serves the built app, 404s unknown paths and rejects path traversal
+**End-to-end tests (`test-e2e.js`)**
 
-`npm run quality` runs both suites plus the VS Code extension and language-server
-compiles. CI runs it on every push, and `prepublishOnly` runs it before any publish.
+- Project scaffolding
+- Build output generation
+- Build failure handling
+- Development server behaviour
+- Hot module replacement
+- Production server behaviour
+
+Run the broader quality command:
+
+```bash
+npm run quality
+```
+
+This runs the test suites and compiles the VS Code extension and language server.
+
+## VS Code Support
+
+The repository includes a VS Code extension with:
+
+- LSX syntax highlighting
+- Code snippets
+- Language-server support
+
+The extension is maintained in the repository's `vscode-extension/` directory. Follow the instructions there to build or install it from source.
+
+## Current Limitations
+
+LSX is actively evolving. Some capabilities are still basic:
+
+- **Compilation target:** LSX compiles to React/JavaScript. It does not replace JavaScript in the browser.
+- **Type checking:** The current checker is basic and opt-in. It is not a complete type system.
+- **Routing:** The `lsx-core` Router uses hash-based routing.
+- **API helpers:** The helpers are lightweight wrappers around Fetch.
+- **Production readiness:** Evaluate the compiler, generated output, and package versions for your use case before adopting LSX in a critical production system.
+
+For exact syntax and supported constructs, consult [SPEC.md](SPEC.md) and the examples in this repository.
 
 ## Roadmap
 
-- [x] Complete transpiler with full syntax support
-- [x] Implement development server with hot reload
-- [x] Build core component library
-- [x] Basic type checking (opt-in via `typeCheck`)
-- [x] VS Code extension (syntax highlighting + language server)
-- [x] Routing (`Router`, `Link`) and API helpers (`get`, `post`, `put`, `del`)
-- [x] End-to-end smoke suite covering the CLI's failure semantics
-- [ ] Publish to npm
-- [ ] Production bundling (hashed assets, code splitting, CSS extraction)
-- [ ] Full type system (interfaces, generics, sound checking)
+The initial compiler, CLI, core component library, development server, and editor tooling have been implemented.
+
+Further development includes:
+
+- [ ] Production bundling improvements: hashed assets, code splitting, and CSS extraction
+- [ ] A fuller type system, including interfaces, generics, and sound checking
+- [ ] Continued compiler and diagnostics improvements
+- [ ] Expanded documentation and beginner tutorials
+- [ ] More examples and learning resources
+
+Check the repository's issues and releases for current priorities.
 
 ## Contributing
 
-This is an early-stage project. Contributions welcome!
+Contributions, bug reports, and suggestions are welcome.
+
+1. Fork the repository.
+2. Create a branch for your change.
+3. Make and test your changes.
+4. Open a pull request with a clear description.
+
+When contributing language features, update the specification and add tests for the supported syntax.
 
 ## License
 
-MIT License - Feel free to use and modify!
+LSX is released under the [MIT License](LICENSE).
